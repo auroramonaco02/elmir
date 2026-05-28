@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Contact — Elmir_DE{% endblock %}
+{% block content %}
+
+<section class="page-hero contact-hero">
+    <div class="container">
+        <h1 data-i18n="contact_title">Contact Us</h1>
+        <p data-i18n="contact_sub">We're here to help you start your journey to Germany</p>
+    </div>
+</section>
+
+<section class="contact-section section">
+    <div class="container">
+        <div class="contact-grid">
+
+            <div class="contact-info">
+                <h2 data-i18n="get_in_touch">Get in Touch</h2>
+                <div class="contact-card phone">
+                    <span class="contact-icon">📞</span>
+                    <div>
+                        <p data-i18n="phone_label">Phone / WhatsApp / Telegram</p>
+                        <a href="tel:+996502826439" class="big-phone">+996 502 826 439</a>
+                    </div>
+                </div>
+                <div class="social-buttons">
+                    <a href="https://wa.me/996502826439" class="btn-whatsapp" target="_blank">
+                        💬 WhatsApp
+                    </a>
+                    <a href="https://t.me/+996502826439" class="btn-telegram" target="_blank">
+                        ✈️ Telegram
+                    </a>
+                </div>
+                <div class="working-hours">
+                    <h3 data-i18n="working_hours">Working Hours</h3>
+                    <p>🕗 09:00 – 20:00 (Bishkek time)</p>
+                    <p data-i18n="open_daily">Open 7 days a week</p>
+                </div>
+            </div>
+
+            <div class="contact-form-wrap">
+                <h2 data-i18n="send_message">Send Us a Message</h2>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                <form method="POST" action="/contact" class="contact-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label data-i18n="form_name">Full Name</label>
+                        <input type="text" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="form_phone">Phone Number</label>
+                        <input type="tel" name="phone" required placeholder="+996 XXX XXX XXX">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="form_interest">I'm interested in</label>
+                        <select name="interest">
+                            <option value="ferienjob">Ferienjob (3 months)</option>
+                            <option value="arbeit">Work Contract (8 months)</option>
+                            <option value="ausbildung">Ausbildung</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="form_message">Message</label>
+                        <textarea name="message" rows="4" placeholder="Tell us about yourself..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" data-i18n="send_btn">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

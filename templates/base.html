@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Elmir_DE — Work & Study in Germany{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-main">ELMIR</span>
+                <span class="logo-sub">_DE</span>
+            </a>
+            <div class="lang-switcher">
+                <button onclick="switchLang('de')" class="lang-btn" data-lang="de">DE</button>
+                <button onclick="switchLang('ky')" class="lang-btn" data-lang="ky">KY</button>
+                <button onclick="switchLang('ru')" class="lang-btn" data-lang="ru">RU</button>
+                <button onclick="switchLang('en')" class="lang-btn" data-lang="en">EN</button>
+                <button onclick="switchLang('tr')" class="lang-btn" data-lang="tr">TR</button>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link" data-i18n="nav_home">Home</a>
+                <a href="/vacancies" class="nav-link" data-i18n="nav_vacancies">Vacancies</a>
+                <a href="/ausbildung" class="nav-link" data-i18n="nav_ausbildung">Ausbildung</a>
+                <a href="/ferienJob" class="nav-link" data-i18n="nav_ferienjob">Ferienjob</a>
+                <a href="/contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/" data-i18n="nav_home">Home</a>
+            <a href="/vacancies" data-i18n="nav_vacancies">Vacancies</a>
+            <a href="/ausbildung" data-i18n="nav_ausbildung">Ausbildung</a>
+            <a href="/ferienJob" data-i18n="nav_ferienjob">Ferienjob</a>
+            <a href="/contact" data-i18n="nav_contact">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo-main">ELMIR</span><span class="logo-sub">_DE</span>
+                <p data-i18n="footer_tagline">Your Gateway to Germany</p>
+            </div>
+            <div class="footer-contact">
+                <p data-i18n="footer_contact_title">Contact Us</p>
+                <a href="tel:+996502826439" class="phone-link">+996 502 826 439</a>
+                <a href="https://wa.me/996502826439" class="whatsapp-link" target="_blank">WhatsApp</a>
+                <a href="https://t.me/+996502826439" class="telegram-link" target="_blank">Telegram</a>
+            </div>
+            <div class="footer-links">
+                <a href="/vacancies" data-i18n="nav_vacancies">Vacancies</a>
+                <a href="/ausbildung" data-i18n="nav_ausbildung">Ausbildung</a>
+                <a href="/ferienJob" data-i18n="nav_ferienjob">Ferienjob</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Elmir_DE. <span data-i18n="footer_rights">All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <script src="/static/js/i18n.js"></script>
+    <script src="/static/js/main.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

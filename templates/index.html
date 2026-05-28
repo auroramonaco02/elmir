@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Elmir_DE — Work & Study in Germany{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg">
+        <div class="hero-shape s1"></div>
+        <div class="hero-shape s2"></div>
+        <div class="hero-shape s3"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-tag" data-i18n="hero_tag">🇩🇪 Official Partner in Germany</div>
+        <h1 class="hero-title">
+            <span class="line1" data-i18n="hero_line1">WORK &</span>
+            <span class="line2" data-i18n="hero_line2">STUDY</span>
+            <span class="line3" data-i18n="hero_line3">IN GERMANY</span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero_sub">Vacancies in all German cities — Ferienjob, 8-month contracts & Ausbildung</p>
+        <div class="hero-actions">
+            <a href="/vacancies" class="btn-primary" data-i18n="hero_cta1">View Vacancies</a>
+            <a href="https://wa.me/996502826439" class="btn-secondary" target="_blank" data-i18n="hero_cta2">WhatsApp Us</a>
+        </div>
+        <div class="hero-phone">
+            <a href="tel:+996502826439">+996 502 826 439</a>
+        </div>
+    </div>
+    <div class="hero-stats">
+        <div class="stat">
+            <span class="stat-num">16+</span>
+            <span class="stat-label" data-i18n="stat_cities">German Cities</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label" data-i18n="stat_programs">Programs</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">500+</span>
+            <span class="stat-label" data-i18n="stat_placed">People Placed</span>
+        </div>
+    </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs section">
+    <div class="container">
+        <h2 class="section-title" data-i18n="programs_title">Our Programs</h2>
+        <div class="programs-grid">
+
+            <div class="program-card ferienjob">
+                <div class="card-icon">☀️</div>
+                <div class="card-duration" data-i18n="ferienjob_duration">3 Months</div>
+                <h3 data-i18n="ferienjob_title">Ferienjob</h3>
+                <p data-i18n="ferienjob_desc">Seasonal summer jobs for students. Work experience in Germany with accommodation and meals provided.</p>
+                <ul class="card-features">
+                    <li data-i18n="ferienjob_f1">✓ Official visa support</li>
+                    <li data-i18n="ferienjob_f2">✓ Accommodation included</li>
+                    <li data-i18n="ferienjob_f3">✓ Competitive salary</li>
+                </ul>
+                <a href="/ferienJob" class="card-btn" data-i18n="learn_more">Learn More</a>
+            </div>
+
+            <div class="program-card arbeit">
+                <div class="card-icon">💼</div>
+                <div class="card-duration" data-i18n="arbeit_duration">8 Months</div>
+                <h3 data-i18n="arbeit_title">Work Contract</h3>
+                <p data-i18n="arbeit_desc">Long-term employment contracts across various industries in major German cities.</p>
+                <ul class="card-features">
+                    <li data-i18n="arbeit_f1">✓ All German cities</li>
+                    <li data-i18n="arbeit_f2">✓ Work permit assistance</li>
+                    <li data-i18n="arbeit_f3">✓ Career growth</li>
+                </ul>
+                <a href="/vacancies" class="card-btn" data-i18n="learn_more">Learn More</a>
+            </div>
+
+            <div class="program-card ausbildung">
+                <div class="card-icon">🎓</div>
+                <div class="card-duration" data-i18n="ausbildung_duration">2–3 Years</div>
+                <h3 data-i18n="ausbildung_title">Ausbildung</h3>
+                <p data-i18n="ausbildung_desc">Vocational training programs in Germany. Earn a German qualification while working and getting paid.</p>
+                <ul class="card-features">
+                    <li data-i18n="ausbildung_f1">✓ German certification</li>
+                    <li data-i18n="ausbildung_f2">✓ Monthly stipend</li>
+                    <li data-i18n="ausbildung_f3">✓ Language support</li>
+                </ul>
+                <a href="/ausbildung" class="card-btn" data-i18n="learn_more">Learn More</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CITIES -->
+<section class="cities section">
+    <div class="container">
+        <h2 class="section-title" data-i18n="cities_title">German Cities We Cover</h2>
+        <div class="cities-grid">
+            {% for city in cities %}
+            <div class="city-tag">{{ city.name }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- LATEST VACANCIES -->
+<section class="latest-vacancies section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="latest_title">Latest Vacancies</h2>
+            <a href="/vacancies" class="see-all" data-i18n="see_all">See All →</a>
+        </div>
+        <div class="vacancies-grid">
+            {% for vac in latest_vacancies %}
+            <div class="vacancy-card">
+                <div class="vacancy-type {{ vac.type }}">{{ vac.get_type_display }}</div>
+                <h4>{{ vac.title }}</h4>
+                <p class="vacancy-city">📍 {{ vac.city }}</p>
+                <p class="vacancy-salary">💶 {{ vac.salary }}</p>
+                <a href="/vacancies/{{ vac.id }}" class="vacancy-btn" data-i18n="apply_now">Apply Now</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA CONTACT -->
+<section class="cta-section">
+    <div class="container">
+        <h2 data-i18n="cta_title">Ready to Start Your Journey?</h2>
+        <p data-i18n="cta_sub">Contact us now and we'll guide you through every step.</p>
+        <div class="cta-buttons">
+            <a href="tel:+996502826439" class="btn-primary">📞 +996 502 826 439</a>
+            <a href="https://wa.me/996502826439" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+            <a href="https://t.me/+996502826439" class="btn-telegram" target="_blank">✈️ Telegram</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

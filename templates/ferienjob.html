@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Ferienjob — Elmir_DE{% endblock %}
+{% block content %}
+
+<section class="page-hero ferienjob-hero">
+    <div class="container">
+        <h1 data-i18n="ferienjob_page_title">Ferienjob in Germany</h1>
+        <p data-i18n="ferienjob_page_sub">3-month seasonal work experience for students</p>
+    </div>
+</section>
+
+<section class="info-section section">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-text">
+                <h2 data-i18n="ferienjob_what">What is Ferienjob?</h2>
+                <p data-i18n="ferienjob_info1">Ferienjob (holiday job) allows students to work in Germany for up to 3 months during summer or other holiday periods. It's a great first step toward working in Germany.</p>
+                <p data-i18n="ferienjob_info2">We handle all documentation, visa support, accommodation arrangement, and employer matching — so you just need to focus on the work!</p>
+                <div class="highlight-box">
+                    <span data-i18n="ferienjob_highlight">☀️ 3 Months · Accommodation Included · Real Work Experience</span>
+                </div>
+            </div>
+            <div class="info-stats">
+                <div class="info-stat">
+                    <span class="big-num">3</span>
+                    <span data-i18n="months">Months</span>
+                </div>
+                <div class="info-stat">
+                    <span class="big-num">1.500€+</span>
+                    <span data-i18n="per_month">Per Month</span>
+                </div>
+                <div class="info-stat">
+                    <span class="big-num">🏠</span>
+                    <span data-i18n="accommodation_incl">Accommodation Included</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" data-i18n="ferienjob_positions">Available Ferienjob Positions</h2>
+        <div class="vacancies-list">
+            {% for vac in ferienjob_vacancies %}
+            <div class="vacancy-full-card">
+                <div class="vfc-left">
+                    <span class="badge ferienjob">Ferienjob</span>
+                    <h3>{{ vac.title }}</h3>
+                    <p class="vfc-city">📍 {{ vac.city }}</p>
+                    <p class="vfc-desc">{{ vac.description }}</p>
+                </div>
+                <div class="vfc-right">
+                    <div class="vfc-salary">{{ vac.salary }}</div>
+                    <div class="vfc-duration">⏱ 3 Months</div>
+                    <a href="/contact" class="btn-primary" data-i18n="apply_now">Apply Now</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

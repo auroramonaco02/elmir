@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}{{ vacancy.title }} — Elmir_DE{% endblock %}
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <span class="badge {{ vacancy.type }}">{{ vacancy.get_type_display }}</span>
+        <h1>{{ vacancy.title }}</h1>
+        <p>📍 {{ vacancy.get_city_name }}</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="vacancy-detail-grid">
+            <div class="vd-main">
+                <h2 data-i18n="about_position">About this Position</h2>
+                <p>{{ vacancy.description }}</p>
+                {% if vacancy.requirements %}
+                <h3 data-i18n="requirements">Requirements</h3>
+                <p>{{ vacancy.requirements }}</p>
+                {% endif %}
+            </div>
+            <div class="vd-sidebar">
+                <div class="vd-card">
+                    <div class="vd-row"><span>💶</span><strong>{{ vacancy.salary }}</strong></div>
+                    <div class="vd-row"><span>⏱</span><span>{{ vacancy.duration }}</span></div>
+                    <div class="vd-row"><span>📍</span><span>{{ vacancy.get_city_name }}</span></div>
+                    {% if vacancy.accommodation_included %}
+                    <div class="vd-row"><span>🏠</span><span data-i18n="accommodation_incl">Accommodation Included</span></div>
+                    {% endif %}
+                    <a href="/contact" class="btn-primary" style="margin-top:1.5rem;display:block;text-align:center;" data-i18n="apply_now">Apply Now</a>
+                    <a href="https://wa.me/996502826439" class="btn-whatsapp" style="margin-top:0.75rem;display:block;text-align:center;" target="_blank">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        {% if related %}
+        <h2 class="section-title" style="margin-top:4rem;" data-i18n="similar_vacancies">Similar Vacancies</h2>
+        <div class="vacancies-grid">
+            {% for vac in related %}
+            <div class="vacancy-card">
+                <div class="vacancy-type {{ vac.type }}">{{ vac.get_type_display }}</div>
+                <h4>{{ vac.title }}</h4>
+                <p class="vacancy-city">📍 {{ vac.get_city_name }}</p>
+                <p class="vacancy-salary">💶 {{ vac.salary }}</p>
+                <a href="/vacancies/{{ vac.id }}" class="vacancy-btn" data-i18n="apply_now">Apply Now</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+.vacancy-detail-grid { display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: start; }
+.vd-main h2 { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:2px; margin-bottom:1rem; }
+.vd-main h3 { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; margin:1.5rem 0 0.75rem; }
+.vd-card { background:#f5f2ed; border-radius:12px; padding:2rem; position:sticky; top:90px; }
+.vd-row { display:flex; align-items:center; gap:0.75rem; padding:0.75rem 0; border-bottom:1px solid rgba(0,0,0,0.07); font-size:0.95rem; }
+.vd-row:last-of-type { border-bottom:none; }
+@media(max-width:768px){ .vacancy-detail-grid { grid-template-columns:1fr; } }
+</style>
+{% endblock %}

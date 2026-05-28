@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Ausbildung — Elmir_DE{% endblock %}
+{% block content %}
+
+<section class="page-hero ausbildung-hero">
+    <div class="container">
+        <h1 data-i18n="ausbildung_page_title">Ausbildung in Germany</h1>
+        <p data-i18n="ausbildung_page_sub">Vocational training — earn while you learn a German qualification</p>
+    </div>
+</section>
+
+<section class="info-section section">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-text">
+                <h2 data-i18n="what_is_ausbildung">What is Ausbildung?</h2>
+                <p data-i18n="ausbildung_info1">Ausbildung is Germany's renowned dual vocational training system. You work at a company while attending a vocational school (Berufsschule), earning a salary throughout the training period of 2–3 years.</p>
+                <p data-i18n="ausbildung_info2">After completion, you receive an officially recognized German qualification — opening doors to work anywhere in the EU.</p>
+                <div class="highlight-box">
+                    <span data-i18n="ausbildung_highlight">🎓 German Certificate + Work Experience + Monthly Salary</span>
+                </div>
+            </div>
+            <div class="info-stats">
+                <div class="info-stat">
+                    <span class="big-num">2–3</span>
+                    <span data-i18n="years_training">Years of Training</span>
+                </div>
+                <div class="info-stat">
+                    <span class="big-num">700€+</span>
+                    <span data-i18n="monthly_salary">Monthly Salary</span>
+                </div>
+                <div class="info-stat">
+                    <span class="big-num">325+</span>
+                    <span data-i18n="professions">Recognized Professions</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" data-i18n="available_ausbildung">Available Ausbildung Programs</h2>
+        <div class="ausbildung-grid">
+            {% for program in ausbildung_programs %}
+            <div class="ausbildung-card">
+                <div class="prog-icon">{{ program.icon }}</div>
+                <h4>{{ program.title }}</h4>
+                <p>📍 {{ program.city }}</p>
+                <p>⏱ {{ program.duration }}</p>
+                <p>💶 {{ program.salary }}</p>
+                <a href="/contact" class="card-btn" data-i18n="apply_now">Apply Now</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

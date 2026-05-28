@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Vacancies — Elmir_DE{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <h1 data-i18n="vacancies_title">Vacancies in Germany</h1>
+        <p data-i18n="vacancies_sub">Find your perfect opportunity across all German cities</p>
+    </div>
+</section>
+
+<section class="vacancies-section section">
+    <div class="container">
+
+        <!-- FILTERS -->
+        <div class="filters">
+            <div class="filter-group">
+                <label data-i18n="filter_type">Type</label>
+                <select name="type" onchange="filterVacancies()" id="typeFilter">
+                    <option value="">All</option>
+                    <option value="ferienjob">Ferienjob (3 months)</option>
+                    <option value="arbeit">Work Contract (8 months)</option>
+                    <option value="ausbildung">Ausbildung</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label data-i18n="filter_city">City</label>
+                <select name="city" onchange="filterVacancies()" id="cityFilter">
+                    <option value="">All Cities</option>
+                    {% for city in cities %}
+                    <option value="{{ city.name }}">{{ city.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filter-group">
+                <input type="text" id="searchInput" placeholder="Search..." oninput="filterVacancies()" data-i18n-placeholder="search_placeholder">
+            </div>
+        </div>
+
+        <!-- VACANCY LIST -->
+        <div class="vacancies-list" id="vacanciesList">
+            {% for vac in vacancies %}
+            <div class="vacancy-full-card" data-type="{{ vac.type }}" data-city="{{ vac.city }}">
+                <div class="vfc-left">
+                    <span class="badge {{ vac.type }}">{{ vac.get_type_display }}</span>
+                    <h3>{{ vac.title }}</h3>
+                    <p class="vfc-city">📍 {{ vac.city }}</p>
+                    <p class="vfc-desc">{{ vac.description }}</p>
+                </div>
+                <div class="vfc-right">
+                    <div class="vfc-salary">{{ vac.salary }}</div>
+                    <div class="vfc-duration">⏱ {{ vac.duration }}</div>
+                    <a href="/vacancies/{{ vac.id }}" class="btn-primary" data-i18n="apply_now">Apply Now</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="empty-state">
+                <p data-i18n="no_vacancies">No vacancies found. Check back soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function filterVacancies() {
+    const type = document.getElementById('typeFilter').value.toLowerCase();
+    const city = document.getElementById('cityFilter').value.toLowerCase();
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.vacancy-full-card');
+    cards.forEach(card => {
+        const matchType = !type || card.dataset.type === type;
+        const matchCity = !city || card.dataset.city.toLowerCase().includes(city);
+        const matchSearch = !search || card.innerText.toLowerCase().includes(search);
+        card.style.display = matchType && matchCity && matchSearch ? 'flex' : 'none';
+    });
+}
+</script>
+{% endblock %}
